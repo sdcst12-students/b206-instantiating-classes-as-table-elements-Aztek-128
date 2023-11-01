@@ -16,12 +16,25 @@
 #HP
 #Wealth (in copper. For example 2 gold, 3 silver and 4 copper has a wealth of 234)
 
+#Extensions:
+
+#A pull request was made to add equipment into the class template. Make and incorporate the following changes:
+#an equipment dictionary needs to be added. The following equipment slots are to be used:
+#head
+#armor
+#shield
+#equipment needs to be randomly selected from the following with the armor ratings: headwear: iron cap (2), leather cap (1), helmet (3) armor: studded leather(9), chainmail(21), scalemail(15), platemail(29) shield: buckler(1), embossed leather shield(2), kite shield(4)
+
+#total armor value needs to be calculated for the npc
+
+#a character sheet needs to be created for each character. A class method/function should display all of the details of the character in an organized output. Want to try some interesting output Visit: https://www.kaggle.com/discussions/general/273188 for more information
 import random
 from task2 import mean 
 
 
 class NPC:
     stats = { 'str' : 0, 'int' : 0, 'pie' : 0, 'agi' : 0, 'stm' : 0, 'cha' : 0 }
+    #armour = {'Headwear':{'ironcap':2,'leathercap':1,'helmet':3},'Armour':{'studded leather':9,'chainmail':21,'scalemail':15,'platemail':29},'Shield':{'buckler':1,'embossed leather shield':2,'kiteshield':4}}
     #print(stats)
     level = 0
     hp = 0
@@ -32,6 +45,7 @@ class NPC:
     def __init__(self):
         self.stats =  { 'str' : 0, 'int' : 0, 'pie' : 0, 'agi' : 0, 'stm' : 0, 'cha' : 0 }
         self.levelup()
+        #self.equipment()
         pass
     def traits(self):
         attributes = ("strength","intelligence","piety","agility","stamina","charm")        
@@ -76,6 +90,22 @@ class NPC:
         self.s = silver
         self.c = copper 
         return ((gold* 100) + (silver *10) + copper)
+    
+    #def equipment(self):
+        
+        for i in self.armour['Headwear']:
+            random.choice()
+        for i in self.armour['Armour']:
+            random.choice()
+            
+        pass
+
+
+
+
+
+
+
 hplist=[]
 wlist = []
 for i in range(100):
@@ -90,6 +120,8 @@ for i in range(100):
     mobtotalwealth = y.wealth()
     wlist.append(mobtotalwealth)
     #print(mobtotalwealth)
+    #armour = y.equipment()
+    
     y = None
     
 sumtotalwealth = sum(wlist)
@@ -101,7 +133,7 @@ healthdeviant = [(i - meanhealth)**2 for i in hplist]
 hpvariant = sum(healthdeviant)/100
 hpvariable = (hpvariant**0.5)
 
-print(f"the mean health is: {meanhealth}, and the deviant is: {round(hpvariable,2)}")
+print(f"the mean health is: {meanhealth} and the deviant is: {round(hpvariable,2)}")
 
 meantotalwealth = (sumtotalwealth/100)
 
@@ -109,7 +141,7 @@ wealthdeviant = [(i - meantotalwealth)**2 for i in wlist]
 wvariant = sum(wealthdeviant)/100
 wvariable = (wvariant ** 0.5)
 
-print(f"the mean wealth is: {meantotalwealth}, and the deviant is: {round(wvariable,2)}")
+print(f"the mean wealth is: {meantotalwealth} and the deviant is: {round(wvariable,2)}")
 
 
 
